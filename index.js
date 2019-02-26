@@ -3,7 +3,8 @@ const router = express.Router()
 const app = express()
 const db = require('monk')('mongodb://admin:password1@ds042888.mlab.com:42888/beauty-planner')
 const bodyParser = require('body-parser')
-const port = 4001
+// const upload = multer({ dest: 'uploads/' })
+const port = process.env.PORT || 4001
 
 const apparelCollection = db.get('apparel')
 const tagCollection = db.get('tags')
