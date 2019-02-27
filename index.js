@@ -3,9 +3,18 @@ const router = express.Router()
 const app = express()
 const db = require('monk')('mongodb://admin:password1@ds042888.mlab.com:42888/beauty-planner')
 const bodyParser = require('body-parser')
-const multer = require('multer')
-const upload = multer({ storage: './photos/' })
 const port = process.env.PORT || 4001
+const multer = require('multer')
+const upload = multer.diskStorage({
+
+    destination: (req, file, cb) => {
+      cb(null, path.resolve(__dirname, './photos'))
+    },
+  
+    filename: function (req, file, cb) {
+      cb(null, file.addpic)
+    }
+  })
 
 const apparelCollection = db.get('apparel')
 const tagCollection = db.get('tags')
