@@ -4,7 +4,7 @@ const app = express()
 const db = require('monk')('mongodb://admin:password1@ds042888.mlab.com:42888/beauty-planner')
 const bodyParser = require('body-parser')
 const multer = require('multer')
-const upload = multer({ dest: './photos/' })
+const upload = multer({ storage: './photos/' })
 const port = process.env.PORT || 4001
 
 const apparelCollection = db.get('apparel')
