@@ -13,9 +13,10 @@ const categoryCollection = db.get('categories')
 app.use(bodyParser.json())
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://polar-ravine-99639.herokuapp.com/')
-    res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS')
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
+    res.setHeader('Access-Control-Allow-Origin', 'https://polar-ravine-99639.herokuapp.com/')
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
+    res.setHeader('Access-Control-Allow-Credentials', true)
     next()
    })
 
