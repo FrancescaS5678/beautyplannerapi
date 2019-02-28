@@ -3,23 +3,12 @@ const router = express.Router()
 const app = express()
 const db = require('monk')('mongodb://admin:password1@ds042888.mlab.com:42888/beauty-planner')
 const bodyParser = require('body-parser')
-const port = process.env.PORT || 4001
 const multer = require('multer')
-const upload = multer.diskStorage({
-
-    destination: (req, file, cb) => {
-      cb(null, path.resolve(__dirname, './photos'))
-    },
-  
-    filename: function (req, file, cb) {
-      cb(null, file.addpic)
-    }
-  })
+const port = process.env.PORT || 4001
 
 const apparelCollection = db.get('apparel')
 const tagCollection = db.get('tags')
 const categoryCollection = db.get('categories')
-const photoCollection = db.get('photos')
 
 app.use(bodyParser.json())
 
@@ -107,15 +96,6 @@ router.put('/categories', async (req, res) => {
     try {
         const categoryList = await categoryCollection.insert(req.body)
         res.json(res.send(categoryList))
-    } catch (err) {
-        return
-    }
-})
-
-router.put('/photos', upload.single('addpic'), async (req, res) => {
-    try {
-        const photoList = await photoCollection.insert(req.body)
-        res.json(res.send(photoList))
     } catch (err) {
         return
     }
